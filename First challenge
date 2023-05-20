@@ -1,0 +1,27 @@
+# Write a smart contract that allows only the admin to access and call all the functions of the contract.
+
+pragma solidity ^0.8.0;
+
+contract AdminOnlyContract {
+    address public admin;
+
+    constructor() {
+        admin = msg.sender; // Set the deployer of the contract as the admin
+    }
+
+    modifier onlyAdmin() {
+        require(msg.sender == admin, "Only the admin can access this function");
+        _;
+    }
+
+    function someFunction() public onlyAdmin {
+    }
+
+    function anotherFunction() public onlyAdmin {
+    }
+
+    function transferAdmin(address newAdmin) public onlyAdmin {
+        require(newAdmin != address(0), "Invalid admin address");
+        admin = newAdmin;
+    }
+}
