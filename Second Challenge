@@ -1,0 +1,26 @@
+# For this challenge, write a smart contract that uses view, pure, and payable functions. Ensure that the functions are accessible within the contract and derived contracts as well.
+
+pragma solidity ^0.8.0;
+
+contract FunctionExample {
+    function viewFunction() public view returns (uint256) {
+        // Function implementation
+        return 42;
+    }
+
+    function pureFunction(uint256 a, uint256 b) public pure returns (uint256) {
+        // Function implementation
+        return a + b;
+    }
+
+    function payableFunction() public payable {
+        // Function implementation
+    }
+}
+
+contract DerivedContract is FunctionExample {
+    function derivedFunction() public view returns (uint256) {
+        // Function implementation
+        return viewFunction();
+    }
+}
